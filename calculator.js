@@ -19,16 +19,17 @@ function askQuestion(rl, question) {
 }
 
 async function main() {
+    console.log("To use the calculator, please adhere to the following format: [int] '+'||'-'||'*'||'/' [int].");
     const rl = readLine.createInterface({
         input: process.stdin,
         output: process.stdout
-    })
-    console.log("To use the calculator, please adhere to the following format: [int] '+'||'-'||'*'||'/' [int].");
+    });
     while (true) {
         /** @type {string} **/
-        const input = await askQuestion(rl, "Enter an expression or type 'Q' to quit:\n");
+        const input = await askQuestion(rl, "Enter an expression or type 'Q' to quit:\n");  
         if (input.toLowerCase().trim() === "q") {
             console.log("Exiting calculator");
+            rl.close();
             break;
         }
         let params = input.replace(/\s+/g, "").match(/(?:^|(?<=[+\-*/]))-?\w+(?:\.\w+)?|[+\-*/]/g) || [];
@@ -43,11 +44,9 @@ async function main() {
         } else if (Number(params[2]) === 0 && params[1] === "/") {
             console.log("Undefined");
         } else {
-            const result = binaryOperation(Number(params[0]), Number(params[2]), params[1]);
-            console.log(`Result: ${result}`);
+            console.log(`Result: ${binaryOperation(Number(params[0]), Number(params[2]), params[1])}`);
         }
     }
-    rl.close();
 }
 
 main();

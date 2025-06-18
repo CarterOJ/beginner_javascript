@@ -10,17 +10,18 @@ async function main() {
     const rl = readLine.createInterface({
         input: process.stdin,
         output: process.stdout
-    })
+    });
     while (true) {
         const magicNumber = Math.floor(Math.random() * 100) + 1;
         /** @type {string} **/
         let guess = await askQuestion(rl, "I am thinking of a number 1-100. Take a guess or type 'Q' to quit: ");
         while (true) {
-            if (guess.trim().toLowerCase() === "q") {
+            const trimmed = guess.trim();
+            if (trimmed.toLowerCase() === "q") {
                 console.log("Exiting guessing game");
                 rl.close();
                 return;
-            } else if (guess.trim().includes(" ")) {
+            } else if (trimmed.includes(" ")) {
                 guess = await askQuestion(rl, "Can only accept one argument at a time! Guess again: ");
             } else if (!Number.isInteger(Number(guess))) {
                 guess = await askQuestion(rl, "Input must be an integer! Guess again: ");

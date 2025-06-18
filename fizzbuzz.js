@@ -26,14 +26,16 @@ async function main() {
     const rl = readLine.createInterface({
         input: process.stdin,
         output: process.stdout
-    })
+    });
     while (true) {
         /** @type {string} **/
         const iters = await askQuestion(rl, "Please enter the iteration amount to fizzbuzz. Type 'Q' to quit: ");
-        if (iters.trim().toLowerCase() === "q") {
+        const trimmed = iters.trim();
+        if (trimmed.toLowerCase() === "q") {
             console.log("Exiting fizzbuzz");
+            rl.close();
             break;
-        } else if (iters.trim().includes(" ")) {
+        } else if (trimmed.includes(" ")) {
             console.log("Can only accept one argument!");
         } else if (!Number.isInteger(Number(iters)) || Number(iters) < 0) {
             console.log("Input must be a positive integer!");
@@ -41,7 +43,6 @@ async function main() {
             console.log(fizzbuzz(Number(iters)));
         }
     }
-    rl.close();
 }
 
 main();
