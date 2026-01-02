@@ -2,12 +2,12 @@ const readLine = require("readline");
 
 function fizzbuzz(n) {
     let lines = [];
-    for (let i = 1; i < n + 1; i++) {
-        if (i % 3 === 0 && i % 5 === 0) {
+    for (let i = 1n; i < n + 1n; i++) {
+        if (i % 3n === 0n && i % 5n === 0n) {
             lines.push("FizzBuzz");
-        } else if (i % 3 === 0) {
+        } else if (i % 3n === 0n) {
             lines.push("Fizz");
-        } else if (i % 5 === 0) {
+        } else if (i % 5n === 0n) {
             lines.push("Buzz");
         } else {
             lines.push(`${i}`)
@@ -37,10 +37,10 @@ async function main() {
             break;
         } else if (trimmed.includes(" ")) {
             console.log("Can only accept one argument!");
-        } else if (!Number.isInteger(Number(iters)) || Number(iters) < 0) {
+        } else if (!/^[0-9]+$/.test(trimmed)) {
             console.log("Input must be a positive integer!");
         } else {
-            console.log(fizzbuzz(Number(iters)));
+            console.log(fizzbuzz(BigInt(iters)));
         }
     }
 }
