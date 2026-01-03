@@ -35,7 +35,7 @@ async function main() {
             console.log("Exiting fizzbuzz");
             rl.close();
             break;
-        } else if (trimmed.includes(" ")) {
+        } else if (trimmed.includes(" ") || trimmed.includes("\t")) {
             console.log("Can only accept one argument!");
         } else if (!/^[0-9]+$/.test(trimmed)) {
             console.log("Input must be a positive integer!");
