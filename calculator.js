@@ -32,7 +32,7 @@ async function main() {
             rl.close();
             break;
         }
-        let params = input.replace(/\s+/g, "").match(/(?:^|(?<=[+\-*/]))-?\w+(?:\.\w+)?|[+\-*/]/g) || [];
+        let params = input.replace(/\s+/g, "").match(/(?:^|(?<=[+\-*/]))-?(?:\w+(?:\.\w+)?|\.\w+)|[+\-*/]/g) || [];
         if (params.length !== 3) {
             console.log("There must be exactly three arguments!");
         } else if (!Number.isInteger(Number(params[0]))) {
